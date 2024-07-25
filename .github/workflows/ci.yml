@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: git config --global url."https://".insteadOf git://
+
+      - name: Install dependencies
+        run: sudo apt-get install -y gcc make
+
+      - name: Build project
+        run: make
+
+      - name: Run tests
+        run: ./test_main
+
+      - name: Clean up
+        run: make clean
