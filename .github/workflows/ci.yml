@@ -26,10 +26,7 @@ jobs:
         run: make
 
       - name: Run tests
-        run: ./test_main
-
-      - name: Run main
-        run: ./main
+        run: ./test_bank_account_app
 
       - name: Clean up
         run: make clean

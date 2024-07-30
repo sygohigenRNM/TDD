@@ -1,13 +1,13 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-Wall -Wextra -Werror
+INCLUDE = -I/include -I/munit
+SRCS = src/bank_account.c tests/test_bank_account.c munit/munit.c
+TARGET = test_bank_account_app
 
-all: main test
+all: $(TARGET)
 
-main: src/main.c
-	$(CC) $(CFLAGS) -o main src/main.c
-
-test: tests/test_main.c
-	$(CC) $(CFLAGS) -o test_main tests/test_main.c
+$(TARGET) : $(SRCS)
+	$(CC) $(CFLAGS) -o $@ $^ $(INCLUDE)
 
 clean:
-	rm -f main test_main
+	rm -f testBankAccount
